@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo completo de animais exóticos — aves, répteis, serpentes, mamíferos, aracnídeos e aquáticos com saúde garantida.">
+  <meta name="theme-color" content="#080C10">
+  <title>ExoticPet — Animais Exóticos</title>
+      
+  <style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS — PREMIUM GOLD EDITION
+═══════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Background layers */
+  --bg:         #090B08;
+  --bg-deep:    #0C0E0B;
+  --bg-surface: #111410;
+  --bg-elev:    #181C15;
+  --bg-card:    #1C2018;
+  --bg-card-h:  #222719;
+
+  /* Borders */
+  --border:     rgba(201,168,76,0.10);
+  --border-md:  rgba(201,168,76,0.18);
+  --border-str: rgba(201,168,76,0.30);
+
+  /* Gold accent */
+  --gold:       #C9A84C;
+  --gold-lt:    #DFC27A;
+  --gold-dk:    #9A7A2E;
+  --gold-dim:   rgba(201,168,76,0.10);
+  --gold-glow:  rgba(201,168,76,0.22);
+
+  /* Text — warm cream tones */
+  --text:       #EDE8DC;
+  --text-2:     #9A9280;
+  --text-3:     #5C5647;
+  --text-inv:   #0C0E0B;
+
+  /* Level colors */
+  --lv-easy:    #6DB87A;
+  --lv-mid:     #D4A04A;
+  --lv-hard:    #C46D6D;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+
+  /* Radii */
+  --r-sm:  6px; --r-md: 12px; --r-lg: 18px;
+  --r-xl:  24px; --r-pill: 100px;
+
+  /* Motion */
+  --ease:   cubic-bezier(.23,1,.32,1);
+  --bounce: cubic-bezier(.34,1.56,.64,1);
+  --dur:    .3s;
+
+  /* Layout */
+  --nav-h: 68px;
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--bg-deep);
+  color:var(--text);
+  font-family:var(--font-sans);
+  font-weight:400;
+  line-height:1.65;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* Subtle dot-grid texture over body */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:radial-gradient(circle,rgba(201,168,76,.04) 1px,transparent 1px);
+  background-size:28px 28px;
+  pointer-events:none;z-index:0;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font-family:var(--font-sans);cursor:pointer;border:none;background:none}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bg-elev);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--gold-dk)}
+::selection{background:var(--gold-dim);color:var(--gold)}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.wrap{width:100%;max-width:1300px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+
+/* ═══════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--nav-h);
+  background:rgba(9,11,8,.88);
+  backdrop-filter:blur(24px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  transition:all var(--dur) var(--ease);
+}
+.nav.scrolled{
+  background:rgba(9,11,8,.97);
+  border-bottom-color:var(--border-md);
+  box-shadow:0 1px 30px rgba(0,0,0,.5);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:100%;gap:20px}
+
+/* Logo */
+.nav-logo{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.nav-logo-mark{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dk));
+  border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:17px;
+  box-shadow:0 4px 14px var(--gold-glow);
+  transition:transform var(--dur) var(--bounce);
+}
+.nav-logo:hover .nav-logo-mark{transform:rotate(-6deg) scale(1.07)}
+.nav-logo-text{
+  font-family:var(--font-serif);
+  font-weight:600;
+  font-size:18px;
+  letter-spacing:.01em;
+  color:var(--text);
+  line-height:1.1;
+}
+.nav-logo-sub{
+  font-family:var(--font-sans);
+  font-size:9px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:block;
+  margin-top:1px;
+}
+
+/* Links */
+.nav-links{display:flex;align-items:center;gap:2px;flex:1;justify-content:center}
+.nav-link{
+  padding:7px 14px;
+  border-radius:var(--r-sm);
+  font-size:13.5px;
+  font-weight:500;
+  color:var(--text-2);
+  letter-spacing:.02em;
+  transition:all var(--dur) var(--ease);
+}
+.nav-link:hover,.nav-link.active{color:var(--text);background:rgba(201,168,76,.07)}
+
+/* CTA */
+.nav-cta{
+  flex-shrink:0;
+  display:inline-flex;align-items:center;gap:7px;
+  padding:9px 22px;
+  background:var(--gold);
+  color:var(--text-inv);
+  border-radius:var(--r-pill);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.03em;
+  transition:all var(--dur) var(--bounce);
+  box-shadow:0 4px 14px var(--gold-glow);
+}
+.nav-cta:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 7px 22px var(--gold-glow)}
+
+/* Hamburger */
+.nav-burger{display:none;flex-direction:column;gap:5px;width:26px;cursor:pointer;padding:3px}
+.nav-burger span{display:block;height:2px;background:var(--text);border-radius:1px;transition:all .3s var(--ease)}
+.nav-burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.nav-mob{
+  display:none;position:fixed;top:var(--nav-h);left:0;right:0;
+  background:var(--bg-surface);
+  border-bottom:1px solid var(--border-md);
+  padding:12px 24px;flex-direction:column;gap:4px;z-index:999;
+}
+.nav-mob.open{display:flex}
+.nav-mob .nav-link{padding:12px 14px;font-size:15px}
+
+/* ═══════════════════════════════════════════
+   HERO — split layout
+═══════════════════════════════════════════ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  padding:calc(var(--nav-h) + 48px) 0 72px;
+  overflow:hidden;
+}
+
+/* Background radial gradients */
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 70% at -5% 50%,rgba(201,168,76,.06) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 60% at 105% 30%,rgba(201,168,76,.05) 0%,transparent 55%),
+    radial-gradient(ellipse 100% 50% at 50% 100%,rgba(9,11,8,.9) 0%,transparent 60%),
+    var(--bg);
+  z-index:0;
+}
+
+/* Subtle noise texture */
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle, rgba(201,168,76,.03) 1px, transparent 1px);
+  background-size:32px 32px;
+  z-index:0;
+}
+
+.hero-c{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:60px;
+  width:100%;
+}
+.hero-left{max-width:580px}
+
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 16px;
+  background:rgba(201,168,76,.08);
+  border:1px solid rgba(201,168,76,.2);
+  border-radius:var(--r-pill);
+  font-size:11px;font-weight:600;color:var(--gold);
+  letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:24px;
+  animation:fdUp .6s var(--ease) both;
+}
+.hero-eyebrow::before{content:'•';margin-right:2px}
+
+.hero-title{
+  font-family:var(--font-serif);
+  font-weight:700;
+  font-size:clamp(46px,5.5vw,78px);
+  line-height:1.05;
+  letter-spacing:-.01em;
+  color:var(--text);
+  margin-bottom:20px;
+  animation:fdUp .7s .1s var(--ease) both;
+}
+.hero-title em{
+  font-style:italic;
+  color:var(--gold);
+  font-weight:400;
+}
+
+.hero-sub{
+  font-size:clamp(15px,1.8vw,17px);
+  font-weight:300;
+  color:var(--text-2);
+  max-width:460px;
+  line-height:1.8;
+  margin-bottom:36px;
+  animation:fdUp .7s .2s var(--ease) both;
+}
+
+.hero-actions{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  animation:fdUp .7s .3s var(--ease) both;
+}
+
+.hero-divider{
+  width:40px;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  margin:36px 0;
+  animation:fdUp .7s .35s var(--ease) both;
+}
+
+.hero-stats{
+  display:flex;align-items:center;gap:36px;flex-wrap:wrap;
+  animation:fdUp .7s .45s var(--ease) both;
+}
+.stat-n{
+  font-family:var(--font-serif);
+  font-size:32px;font-weight:600;
+  line-height:1;letter-spacing:-.01em;
+  color:var(--gold);
+}
+.stat-l{font-size:12px;color:var(--text-3);margin-top:4px;letter-spacing:.03em}
+
+/* Hero right — floating cards */
+.hero-right{
+  display:flex;justify-content:center;align-items:center;
+  position:relative;height:420px;
+  animation:fdIn .8s .4s var(--ease) both;
+}
+.hero-cards{position:relative;width:100%;height:100%}
+.hero-card{
+  position:absolute;
+  background:var(--bg-card);
+  border:1px solid var(--border-md);
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.6);
+  transition:transform .4s var(--ease);
+}
+.hero-card:hover{transform:translateY(-6px) rotate(0deg) !important}
+.hero-card-main{
+  width:220px;height:300px;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  z-index:3;
+}
+.hero-card-left{
+  width:170px;height:240px;
+  top:50%;left:8%;
+  transform:translateY(-50%) rotate(-8deg);
+  z-index:2;opacity:.85;
+}
+.hero-card-right{
+  width:170px;height:240px;
+  top:50%;right:8%;
+  transform:translateY(-50%) rotate(7deg);
+  z-index:2;opacity:.85;
+}
+.hcard-thumb{
+  height:60%;display:flex;align-items:center;justify-content:center;
+  font-size:64px;
+}
+.hcard-body{padding:12px 14px}
+.hcard-name{
+  font-family:var(--font-serif);
+  font-size:16px;font-weight:600;
+  color:var(--text);margin-bottom:2px;
+}
+.hcard-sci{font-size:10px;color:var(--text-3);font-style:italic}
+.hcard-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:8px;
+  padding:3px 9px;
+  background:rgba(109,184,122,.12);
+  border-radius:var(--r-pill);
+  font-size:9px;font-weight:700;color:var(--lv-easy);
+}
+.hcard-badge::before{content:'●';font-size:6px}
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 28px;
+  border-radius:var(--r-pill);
+  font-size:13.5px;font-weight:600;
+  letter-spacing:.04em;
+  cursor:pointer;border:none;
+  transition:all var(--dur) var(--bounce);
+  font-family:var(--font-sans);
+}
+.btn-p{
+  background:var(--gold);color:var(--text-inv);
+  box-shadow:0 4px 18px var(--gold-glow);
+}
+.btn-p:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 8px 28px var(--gold-glow)}
+.btn-s{
+  background:transparent;
+  color:var(--text);
+  border:1.5px solid rgba(201,168,76,.3);
+}
+.btn-s:hover{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.btn-sm{padding:8px 18px;font-size:12px}
+
+/* ═══════════════════════════════════════════
+   SECTION HEADER TYPOGRAPHY
+═══════════════════════════════════════════ */
+.sec-eye{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:4px 12px;
+  background:rgba(201,168,76,.08);
+  border:1px solid rgba(201,168,76,.18);
+  border-radius:var(--r-pill);
+  font-size:10px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:14px;
+}
+.sec-title{
+  font-family:var(--font-serif);
+  font-size:clamp(28px,3.8vw,46px);
+  font-weight:700;
+  letter-spacing:-.01em;
+  line-height:1.1;
+  color:var(--text);
+  margin-bottom:14px;
+}
+.sec-title em{font-style:italic;color:var(--gold);font-weight:400}
+.sec-sub{
+  font-size:16px;color:var(--text-2);font-weight:300;
+  max-width:500px;margin:0 auto;line-height:1.75;
+}
+.sec-rule{
+  width:36px;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  margin:16px 0;
+}
+
+/* ═══════════════════════════════════════════
+   CATALOG CONTROLS (sticky bar)
+═══════════════════════════════════════════ */
+.catalog-ctrl{
+  background:rgba(12,14,11,.95);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:var(--nav-h);z-index:200;
+  padding:14px 0;
+}
+.ctrl-row1{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.search-wrap{flex:1;position:relative}
+.search-ico{
+  position:absolute;left:14px;top:50%;
+  transform:translateY(-50%);
+  font-size:14px;pointer-events:none;color:var(--text-3);
+}
+#search-input{
+  width:100%;
+  padding:10px 40px 10px 42px;
+  background:var(--bg-card);
+  border:1.5px solid var(--border);
+  border-radius:var(--r-pill);
+  color:var(--text);font-size:14px;
+  font-family:var(--font-sans);
+  outline:none;
+  transition:border-color var(--dur),box-shadow var(--dur);
+}
+#search-input::placeholder{color:var(--text-3)}
+#search-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
+#search-clear{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  color:var(--text-3);font-size:13px;cursor:pointer;padding:4px;
+  transition:color var(--dur);
+}
+#search-clear:hover{color:var(--gold)}
+
+.sort-sel{
+  padding:9px 16px;background:var(--bg-card);
+  border:1.5px solid var(--border);border-radius:var(--r-pill);
+  color:var(--text-2);font-size:13px;font-family:var(--font-sans);
+  outline:none;cursor:pointer;flex-shrink:0;
+  transition:border-color var(--dur);
+}
+.sort-sel:focus{border-color:var(--gold)}
+.sort-sel option{background:var(--bg-surface)}
+
+.ctrl-row2{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.filter-pills{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+
+.fpill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:6px 14px;
+  background:transparent;
+  border:1.5px solid var(--border);
+  border-radius:var(--r-pill);
+  font-size:12px;font-weight:500;
+  color:var(--text-2);cursor:pointer;white-space:nowrap;
+  transition:all var(--dur) var(--ease);
+}
+.fpill:hover{border-color:rgba(201,168,76,.3);color:var(--text-2)}
+.fpill.active{
+  background:var(--gold-dim);
+  border-color:rgba(201,168,76,.38);
+  color:var(--gold);font-weight:600;
+}
+
+.level-pills{display:flex;gap:5px;flex-shrink:0}
+.lvpill{
+  padding:5px 12px;
+  background:transparent;
+  border:1.5px solid var(--border);
+  border-radius:var(--r-pill);
+  font-size:11px;font-weight:700;
+  color:var(--text-3);cursor:pointer;
+  transition:all var(--dur);white-space:nowrap;
+}
+.lvpill.active{background:var(--bg-elev);color:var(--text);border-color:var(--border-md)}
+.lvpill.active.easy{border-color:var(--lv-easy);color:var(--lv-easy);background:rgba(109,184,122,.08)}
+.lvpill.active.mid{border-color:var(--lv-mid);color:var(--lv-mid);background:rgba(212,160,74,.08)}
+.lvpill.active.hard{border-color:var(--lv-hard);color:var(--lv-hard);background:rgba(196,109,109,.08)}
+
+.results-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 0 10px;gap:12px;flex-wrap:wrap;
+}
+.results-txt{font-size:13px;color:var(--text-3)}
+#result-count{color:var(--gold);font-weight:600}
+#reset-btn{
+  font-size:11px;color:var(--text-3);
+  border:1px solid var(--border);border-radius:var(--r-pill);
+  padding:4px 12px;cursor:pointer;transition:all var(--dur);
+}
+#reset-btn:hover{color:var(--gold);border-color:rgba(201,168,76,.3)}
+
+/* ═══════════════════════════════════════════
+   ANIMAL GRID
+═══════════════════════════════════════════ */
+.animals-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(288px,1fr));
+  gap:18px;
+  padding-bottom:80px;
+}
+
+/* ═══════════════════════════════════════════
+   ANIMAL CARD
+═══════════════════════════════════════════ */
+.acard{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  cursor:pointer;
+  display:flex;flex-direction:column;
+  position:relative;
+  transition:transform var(--dur) var(--ease),border-color var(--dur),box-shadow var(--dur);
+}
+.acard:hover{
+  transform:translateY(-6px);
+  border-color:rgba(201,168,76,.25);
+  box-shadow:0 20px 55px rgba(0,0,0,.5),0 0 0 1px rgba(201,168,76,.08);
+}
+.acard-featured{
+  position:absolute;top:12px;right:12px;
+  background:var(--gold);
+  color:var(--text-inv);
+  font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:var(--r-pill);z-index:2;
+  box-shadow:0 3px 10px var(--gold-glow);
+}
+
+/* Card thumbnail */
+.card-thumb{height:200px;position:relative;overflow:hidden;flex-shrink:0}
+.card-thumb::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 45%,rgba(9,11,8,.85) 100%);
+  z-index:1;
+}
+.card-emoji-bg{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:76px;
+  transition:transform .5s var(--ease);
+}
+.acard:hover .card-emoji-bg{transform:scale(1.06)}
+.card-cat-tag{
+  position:absolute;bottom:10px;left:12px;z-index:2;
+  background:rgba(9,11,8,.78);backdrop-filter:blur(6px);
+  border:1px solid var(--border);border-radius:var(--r-pill);
+  padding:3px 11px;font-size:10px;font-weight:500;color:var(--text-2);
+}
+
+/* Card body */
+.card-body{padding:16px 18px;display:flex;flex-direction:column;gap:7px;flex:1}
+.card-name{
+  font-family:var(--font-serif);font-weight:600;
+  font-size:18px;letter-spacing:.01em;
+  color:var(--text);line-height:1.2;
+}
+.card-sci{font-size:11px;color:var(--text-3);font-style:italic;font-weight:300}
+.card-desc{
+  font-size:12.5px;color:var(--text-2);line-height:1.65;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto;padding-top:8px}
+.ctag{
+  display:flex;align-items:center;gap:3px;
+  padding:3px 9px;
+  background:var(--bg-surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-pill);
+  font-size:10.5px;color:var(--text-2);font-weight:400;
+}
+
+/* Card footer */
+.card-foot{
+  padding:12px 18px;
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+}
+.card-status{
+  font-size:11px;font-weight:600;color:var(--lv-easy);
+  display:flex;align-items:center;gap:5px;
+}
+.card-status::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--lv-easy);animation:pulse 2s infinite;
+}
+.card-view{
+  display:flex;align-items:center;gap:5px;
+  padding:6px 14px;
+  background:var(--gold-dim);
+  border:1px solid rgba(201,168,76,.18);
+  border-radius:var(--r-pill);
+  font-size:11px;font-weight:600;color:var(--gold);
+  transition:all var(--dur) var(--ease);
+}
+.card-view:hover,.acard:hover .card-view{background:var(--gold);color:var(--text-inv)}
+
+/* Level badge */
+.lbadge{
+  display:inline-flex;align-items:center;gap:4px;
+  padding:3px 9px;border-radius:var(--r-pill);
+  font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+}
+.lbadge::before{content:'';width:4px;height:4px;border-radius:50%;background:currentColor}
+.lbadge.ini{background:rgba(109,184,122,.10);color:var(--lv-easy)}
+.lbadge.int{background:rgba(212,160,74,.10);color:var(--lv-mid)}
+.lbadge.ava{background:rgba(196,109,109,.10);color:var(--lv-hard)}
+
+/* ═══════════════════════════════════════════
+   EMPTY STATE
+═══════════════════════════════════════════ */
+.empty{grid-column:1/-1;text-align:center;padding:80px 24px}
+.empty-ico{font-size:52px;margin-bottom:16px;filter:grayscale(1) opacity(.4)}
+.empty-t{font-family:var(--font-serif);font-size:20px;color:var(--text-2);margin-bottom:6px}
+.empty-s{font-size:14px;color:var(--text-3)}
+
+/* ═══════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════ */
+.modal-ov{
+  position:fixed;inset:0;
+  background:rgba(5,7,5,.92);
+  backdrop-filter:blur(16px);
+  z-index:2000;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s var(--ease);
+}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal{
+  background:var(--bg-card);
+  border:1px solid var(--border-md);
+  border-radius:var(--r-xl);
+  width:100%;max-width:860px;max-height:90vh;
+  overflow-y:auto;position:relative;
+  transform:scale(.96) translateY(14px);
+  transition:transform .32s var(--bounce);
+  box-shadow:0 40px 100px rgba(0,0,0,.8),0 0 0 1px rgba(201,168,76,.05);
+}
+.modal-ov.open .modal{transform:scale(1) translateY(0)}
+.modal-x{
+  position:sticky;top:0;z-index:10;
+  display:flex;justify-content:flex-end;
+  padding:14px 14px 0;
+}
+.modal-x-btn{
+  width:33px;height:33px;
+  background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--text-2);font-size:15px;cursor:pointer;
+  transition:all var(--dur) var(--ease);
+}
+.modal-x-btn:hover{transform:rotate(90deg);color:var(--gold);border-color:var(--gold)}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr}
+.modal-img-wrap{
+  min-height:380px;
+  border-radius:var(--r-xl) 0 0 var(--r-xl);
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.modal-emoji-bg{
+  width:100%;min-height:380px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:110px;
+}
+.modal-info{padding:28px 28px 28px 22px;display:flex;flex-direction:column;gap:14px}
+.modal-cat-l{
+  font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold);
+}
+.modal-title{
+  font-family:var(--font-serif);
+  font-size:30px;font-weight:700;
+  letter-spacing:-.01em;line-height:1.1;
+  color:var(--text);
+}
+.modal-sci{font-size:13px;color:var(--text-3);font-style:italic}
+.modal-desc{font-size:13.5px;color:var(--text-2);line-height:1.75}
+.modal-specs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mspec{
+  background:var(--bg-surface);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);padding:11px 13px;
+}
+.mspec-l{
+  font-size:9.5px;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--text-3);margin-bottom:3px;
+}
+.mspec-v{font-size:12.5px;font-weight:600;color:var(--text);line-height:1.4}
+.modal-acts{display:flex;gap:10px;margin-top:auto}
+
+/* ═══════════════════════════════════════════
+   PAGE SECTIONS
+═══════════════════════════════════════════ */
+.page-hdr{padding:calc(var(--nav-h) + 56px) 0 40px;position:relative;overflow:hidden}
+.page-hdr-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 100% at 50% 0%,rgba(201,168,76,.07) 0%,transparent 65%);
+  z-index:0;
+}
+.page-hdr-c{position:relative;z-index:1}
+.breadcrumb{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-3);margin-bottom:14px}
+.breadcrumb a:hover{color:var(--gold)}
+
+/* Care cards */
+.care-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:var(--r-xl);
+  padding:28px;
+}
+.care-icon{
+  width:46px;height:46px;
+  background:rgba(201,168,76,.10);
+  border:1px solid rgba(201,168,76,.18);
+  border-radius:var(--r-md);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;margin-bottom:18px;
+}
+.care-title{
+  font-family:var(--font-serif);font-size:20px;font-weight:600;
+  color:var(--text);margin-bottom:10px;
+}
+.care-list{display:flex;flex-direction:column;gap:8px}
+.care-item{
+  display:flex;align-items:flex-start;gap:9px;
+  font-size:13px;color:var(--text-2);line-height:1.5;
+}
+.care-item::before{
+  content:'✓';color:var(--gold);font-weight:700;
+  flex-shrink:0;margin-top:1px;
+}
+
+/* FAQ accordion */
+.faq-item{
+  border:1px solid var(--border);
+  border-radius:var(--r-lg);margin-bottom:8px;overflow:hidden;
+  transition:border-color var(--dur);
+}
+.faq-item.open{border-color:rgba(201,168,76,.25)}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:16px 20px;background:var(--bg-card);text-align:left;cursor:pointer;
+  transition:background var(--dur);
+}
+.faq-q:hover{background:var(--bg-card-h)}
+.faq-item.open .faq-q{background:var(--bg-elev)}
+.faq-qt{
+  font-family:var(--font-serif);font-size:16px;font-weight:500;
+  color:var(--text);line-height:1.4;flex:1;
+}
+.faq-icon{
+  width:26px;height:26px;
+  background:var(--bg-surface);border:1px solid var(--border);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--text-3);font-size:15px;flex-shrink:0;
+  transition:all .3s var(--ease);
+}
+.faq-item.open .faq-icon{background:var(--gold-dim);color:var(--gold);transform:rotate(45deg)}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.faq-item.open .faq-ans{max-height:360px}
+.faq-ans-in{
+  padding:0 20px 16px;
+  font-size:14px;color:var(--text-2);line-height:1.75;
+  background:var(--bg-elev);
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.footer{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  padding:64px 0 28px;
+}
+.footer-g{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:44px}
+.footer-logo{display:flex;align-items:center;gap:11px;margin-bottom:14px}
+.footer-mark{
+  width:34px;height:34px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dk));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;
+}
+.footer-text{
+  font-family:var(--font-serif);font-weight:600;font-size:17px;
+  letter-spacing:.01em;line-height:1.1;
+}
+.footer-text-sub{
+  font-family:var(--font-sans);font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--gold);display:block;margin-top:1px;
+}
+.footer-desc{font-size:13px;color:var(--text-2);line-height:1.7;max-width:250px;margin-bottom:18px}
+.footer-soc{display:flex;gap:8px}
+.fsoc{
+  width:33px;height:33px;
+  background:var(--bg-elev);border:1px solid var(--border);
+  border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--text-2);transition:all var(--dur) var(--ease);
+}
+.fsoc:hover{background:var(--gold-dim);border-color:rgba(201,168,76,.28);color:var(--gold);transform:translateY(-2px)}
+.fcol-t{
+  font-family:var(--font-sans);font-weight:600;font-size:11px;color:var(--gold);
+  letter-spacing:.10em;text-transform:uppercase;margin-bottom:14px;
+}
+.fcol-links{display:flex;flex-direction:column;gap:9px}
+.flink{
+  font-size:13px;color:var(--text-2);transition:color var(--dur);
+}
+.flink:hover{color:var(--gold)}
+.footer-bot{
+  border-top:1px solid var(--border);padding-top:20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.footer-copy{font-size:12px;color:var(--text-3)}
+.footer-leg{display:flex;gap:16px}
+.footer-leg a{font-size:12px;color:var(--text-3);transition:color var(--dur)}
+.footer-leg a:hover{color:var(--gold)}
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:22px;right:22px;
+  background:var(--bg-elev);
+  border:1px solid var(--border-md);
+  border-radius:var(--r-md);padding:13px 18px;
+  display:flex;align-items:center;gap:11px;
+  font-size:13px;color:var(--text);
+  box-shadow:0 20px 50px rgba(0,0,0,.6);z-index:9999;
+  transform:translateY(18px);opacity:0;transition:all .35s var(--ease);max-width:320px;
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-x{color:var(--text-3);cursor:pointer;font-size:14px}
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fdUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fdIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{box-shadow:0 0 6px rgba(109,184,122,.3)}50%{box-shadow:0 0 12px rgba(109,184,122,.5)}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .hero-c{grid-template-columns:1fr;gap:48px}
+  .hero-right{display:none}
+  .footer-g{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-brand{grid-column:1/-1}
+  .modal-grid{grid-template-columns:1fr}
+  .modal-img-wrap{min-height:240px;border-radius:var(--r-xl) var(--r-xl) 0 0}
+  .modal-emoji-bg{min-height:240px}
+}
+@media(max-width:768px){
+  :root{--nav-h:62px}
+  .nav-links,.nav-cta{display:none}
+  .nav-burger{display:flex}
+  .animals-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+  .ctrl-row1{flex-direction:column}
+  .sort-sel{width:100%}
+  .ctrl-row2{flex-direction:column;align-items:flex-start}
+  .footer-g{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .animals-grid{grid-template-columns:1fr}
+  .modal-specs{grid-template-columns:1fr}
+  .modal-acts{flex-direction:column}
+  .toast{left:16px;right:16px;bottom:16px;max-width:none}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions .btn{justify-content:center}
+  .level-pills{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* ── PRICE DISPLAY ─────────────────────── */
+.card-price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  padding: 8px 18px 2px;
+  border-top: 1px solid var(--border);
+}
+.card-price-from {
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 500;
+  letter-spacing: .04em;
+}
+.card-price-value {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -.01em;
+}
+.modal-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 10px 16px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,168,76,.22);
+  border-radius: var(--r-md);
+  width: fit-content;
+  flex-wrap: wrap;
+}
+.modal-price-from { font-size: 11px; color: var(--gold-dk); font-weight: 500; }
+.modal-price-value { font-family: var(--font-serif); font-size: 24px; font-weight: 700; color: var(--gold); line-height: 1; }
+.modal-price-note { font-size: 10px; color: var(--text-3); align-self: center; }
+
+/* ── CARD REAL IMAGE ──────────────────────── */
+.card-img-wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.card-real-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform .5s ease;
+}
+.acard:hover .card-real-img { transform: scale(1.06); }
+.card-img-fallback {
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 76px;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ NAVBAR ══════════════ -->
+<nav class="nav" id="navbar">
+  <div class="wrap">
+    <div class="nav-in">
+      <a href="#" class="nav-logo" onclick="scrollToTop(event)">
+        <div class="nav-logo-mark">🐾</div>
+        <div>
+          <span class="nav-logo-text">Fauna Elite</span>
+          <span class="nav-logo-sub">Animais Exóticos</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#catalogo" class="nav-link">Catálogo</a>
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#cuidados" class="nav-link">Cuidados</a>
+      </div>
+      <a href="https://wa.me/556182362423" target="_blank" rel="noopener" class="nav-cta">💬 Falar com especialista</a>
+      <button class="nav-burger" id="burger" aria-label="Menu" onclick="toggleBurger()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mob" id="nav-mob">
+  <a href="#catalogo" class="nav-link" onclick="closeBurger()">🦎 Catálogo</a>
+  <a href="#sobre"    class="nav-link" onclick="closeBurger()">ℹ️ Sobre</a>
+  <a href="#cuidados" class="nav-link" onclick="closeBurger()">🌿 Cuidados</a>
+  <a href="#contato"  class="nav-link" style="color:var(--accent);font-weight:700" onclick="closeBurger()">💬 Contato</a>
+</div>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-c">
+      <!-- Left -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">Espécies certificadas e legalizadas</div>
+        <h1 class="hero-title">
+          Animais Exóticos<br>
+          <em>com Alma.</em>
+        </h1>
+        <p class="hero-sub">
+          Conectamos você a espécies extraordinárias com toda a segurança, responsabilidade e suporte especializado que você merece. Procedência garantida, animais saudáveis.
+        </p>
+        <div class="hero-actions">
+          <a href="#catalogo" class="btn btn-p" onclick="smoothTo(event,'catalogo')">🐾 Ver Catálogo</a>
+          <a href="#sobre" class="btn btn-s" onclick="smoothTo(event,'sobre')">🛡 Nossa Missão</a>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-n" data-count="47" data-suf="+">47+</div>
+            <div class="stat-l">Espécies</div>
+          </div>
+          <div style="padding:0 24px;border-left:1px solid var(--border);border-right:1px solid var(--border)">
+            <div class="stat-n">100%</div>
+            <div class="stat-l">Legalizados</div>
+          </div>
+          <div>
+            <div class="stat-n">24h</div>
+            <div class="stat-l">Suporte</div>
+          </div>
+        </div>
+      </div>
+      <!-- Right — floating cards -->
+      <div class="hero-right">
+        <div class="hero-cards">
+          <!-- Left card -->
+          <div class="hero-card hero-card-left">
+            <div class="hcard-thumb" style="background:linear-gradient(135deg,#1A3022,#0F2016)">🦜</div>
+            <div class="hcard-body">
+              <p class="hcard-name">Rosela</p>
+              <p class="hcard-sci">Platycercus elegans</p>
+            </div>
+          </div>
+          <!-- Main card -->
+          <div class="hero-card hero-card-main">
+            <div class="hcard-thumb" style="background:linear-gradient(135deg,#7C3B0A,#B85A12)">🐍</div>
+            <div class="hcard-body">
+              <p class="hcard-name">Cobra do Milho</p>
+              <p class="hcard-sci">Pantherophis guttatus</p>
+              <span class="hcard-badge">Disponível</span>
+            </div>
+          </div>
+          <!-- Right card -->
+          <div class="hero-card hero-card-right">
+            <div class="hcard-thumb" style="background:linear-gradient(135deg,#2A1A3E,#4A2A6E)">🕷️</div>
+            <div class="hcard-body">
+              <p class="hcard-name">Lasiodora</p>
+              <p class="hcard-sci">L. pulchripes</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CATÁLOGO ══════════════ -->
+<section id="catalogo">
+  <div style="background:var(--bg-surface);padding:48px 0 0">
+    <div class="wrap">
+      <div class="page-hdr-bg" style="position:absolute;inset:0;pointer-events:none"></div>
+      <div style="max-width:600px">
+        <span class="sec-eye">Catálogo completo</span>
+        <h2 class="sec-title">Encontre seu animal<br><span style="color:var(--accent)">ideal</span></h2>
+        <p class="sec-sub">Filtre por categoria, nível de dificuldade ou busque pelo nome.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles de filtro -->
+  <div class="catalog-ctrl">
+    <div class="wrap">
+      <div class="ctrl-row1">
+        <div class="search-wrap">
+          <span class="search-ico">🔍</span>
+          <input type="search" id="search-input" placeholder="Buscar por nome, origem, alimentação..." autocomplete="off">
+          <button id="search-clear" onclick="clearSearch()" aria-label="Limpar">✕</button>
+        </div>
+        <select class="sort-sel" id="sort-sel" onchange="applyFilters()">
+          <option value="nome-az">A → Z</option>
+          <option value="nome-za">Z → A</option>
+          <option value="nivel-asc">Nível: Fácil primeiro</option>
+          <option value="nivel-desc">Nível: Difícil primeiro</option>
+          <option value="destaque">Destaques primeiro</option>
+        </select>
+      </div>
+      <div class="ctrl-row2">
+        <div class="filter-pills" id="filter-pills">
+          <!-- Renderizado pelo JS -->
+        </div>
+        <div class="level-pills">
+          <button class="lvpill active" data-lv="todos" onclick="setLevel(this)">Todos</button>
+          <button class="lvpill" data-lv="Iniciante" onclick="setLevel(this)">🟢 Iniciante</button>
+          <button class="lvpill" data-lv="Intermediário" onclick="setLevel(this)">🟡 Intermediário</button>
+          <button class="lvpill" data-lv="Avançado" onclick="setLevel(this)">🔴 Avançado</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div style="background:var(--bg-surface);padding:0 0 20px">
+    <div class="wrap">
+      <div class="results-bar">
+        <p class="results-txt">Exibindo <span id="result-count">—</span></p>
+        <button id="reset-btn" onclick="resetFilters()">✕ Limpar filtros</button>
+      </div>
+      <div class="animals-grid" id="animals-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ SOBRE ══════════════ -->
+<section id="sobre" style="padding:88px 0;background:var(--bg-deep)">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+      <div class="reveal">
+        <div class="sec-eye">📍 Sobre Nós</div>
+        <h2 class="sec-title">Cinco anos conectando<br>tutores a espécies <em>extraordinárias</em></h2>
+        <div class="sec-rule"></div>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.85;margin-bottom:28px">
+          A Fauna Elite nasceu da paixão de um biólogo que acreditava que cuidar de animais exóticos deveria ser feito com responsabilidade, conhecimento e suporte real. Hoje somos uma equipe especializada com operação 100% regularizada pelo IBAMA, mais de 47 espécies disponíveis e 1.200+ tutores satisfeitos em todo o Brasil.
+        </p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#contato" class="btn btn-p btn-sm">💬 Falar conosco</a>
+          <a href="#catalogo" class="btn btn-s btn-sm" onclick="smoothTo(event,'catalogo')">Ver catálogo</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px" class="reveal">
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:22px">
+          <div class="care-icon">🩺</div>
+          <p style="font-family:var(--font-serif);font-size:17px;font-weight:600;margin-bottom:6px">Saúde garantida</p>
+          <p style="font-size:12px;color:var(--text-2);line-height:1.65">Quarentena e laudo veterinário em todos os animais entregues</p>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:22px">
+          <div class="care-icon">📋</div>
+          <p style="font-family:var(--font-serif);font-size:17px;font-weight:600;margin-bottom:6px">100% legal</p>
+          <p style="font-size:12px;color:var(--text-2);line-height:1.65">Documentação IBAMA e CITES em todas as espécies</p>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:22px">
+          <div class="care-icon">🎓</div>
+          <p style="font-family:var(--font-serif);font-size:17px;font-weight:600;margin-bottom:6px">Suporte real</p>
+          <p style="font-size:12px;color:var(--text-2);line-height:1.65">Equipe disponível antes, durante e após a adoção</p>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-xl);padding:22px">
+          <div class="care-icon">📦</div>
+          <p style="font-family:var(--font-serif);font-size:17px;font-weight:600;margin-bottom:6px">Entrega segura</p>
+          <p style="font-size:12px;color:var(--text-2);line-height:1.65">Embalagem especializada para todo o Brasil com rastreio</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CUIDADOS ══════════════ -->
+<section id="cuidados" style="padding:88px 0;background:var(--bg-surface)">
+  <div class="wrap">
+    <div style="max-width:640px;margin-bottom:52px">
+      <div class="sec-eye">🌿 Cuidados</div>
+      <h2 class="sec-title reveal">Cuidados <em>Essenciais</em></h2>
+      <div class="sec-rule"></div>
+      <p style="font-size:15px;color:var(--text-2);line-height:1.8">
+        Ter um animal exótico é um compromisso sério. Saiba como oferecer o melhor ambiente e qualidade de vida para seu novo companheiro.
+      </p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div class="care-card reveal">
+        <div class="care-icon">🍽️</div>
+        <h3 class="care-title">Alimentação</h3>
+        <div class="care-list">
+          <p class="care-item">Ofereça alimentos frescos e adequados à espécie</p>
+          <p class="care-item">Mantenha frequência e quantidade recomendadas</p>
+          <p class="care-item">Suplementação vitamínica quando necessário</p>
+          <p class="care-item">Água limpa e fresca sempre disponível</p>
+          <p class="care-item">Nunca ofereça alimentos contraindicados</p>
+        </div>
+      </div>
+      <div class="care-card reveal" style="transition-delay:100ms">
+        <div class="care-icon">🌡️</div>
+        <h3 class="care-title">Ambiente Ideal</h3>
+        <div class="care-list">
+          <p class="care-item">Terrário ou viveiro no tamanho adequado</p>
+          <p class="care-item">Controle de temperatura e gradiente térmico</p>
+          <p class="care-item">Umidade relativa conforme a espécie</p>
+          <p class="care-item">Esconderijos e enriquecimento ambiental</p>
+          <p class="care-item">Limpeza e higienização periódica</p>
+        </div>
+      </div>
+      <div class="care-card reveal" style="transition-delay:200ms">
+        <div class="care-icon">🤝</div>
+        <h3 class="care-title">Manejo e Comportamento</h3>
+        <div class="care-list">
+          <p class="care-item">Aprenda a ler a linguagem corporal do animal</p>
+          <p class="care-item">Manejo gradual para animais mais arredios</p>
+          <p class="care-item">Nunca force o contato em momentos de estresse</p>
+          <p class="care-item">Consultas veterinárias preventivas</p>
+          <p class="care-item">Registro de saúde e comportamento</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTATO ══════════════ -->
+<section id="contato" style="padding:80px 0;background:var(--bg-deep)">
+  <div class="wrap">
+    <div style="b<!-- ══════════════ CONTATO ══════════════ -->
+<section id="contato" style="padding:88px 0;background:var(--bg-deep)">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:start">
+      <!-- Left info -->
+      <div class="reveal">
+        <div class="sec-eye">✉️ Contato</div>
+        <h2 class="sec-title">Fale <em>Conosco</em></h2>
+        <div class="sec-rule"></div>
+        <p style="font-size:15px;color:var(--text-2);line-height:1.8;margin-bottom:28px">
+          Tire suas dúvidas, solicite informações sobre espécies disponíveis ou inicie o processo de adoção. Respondemos em minutos pelo WhatsApp.
+        </p>
+        <a href="https://wa.me/556182362423" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+           background:#25D366;color:#fff;border-radius:var(--r-pill);
+           font-size:14px;font-weight:600;letter-spacing:.03em;
+           box-shadow:0 4px 18px rgba(37,211,102,.25);
+           transition:all .3s var(--ease);"
+           onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+          💬 Falar com especialista
+        </a>
+        <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text-2)">
+            <span style="width:32px;height:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center">📍</span>
+            Brasília, DF — Brasil
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text-2)">
+            <span style="width:32px;height:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center">📞</span>
+            (61) 98236-2423
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:13px;color:var(--text-2)">
+            <span style="width:32px;height:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center">⏰</span>
+            Segunda a Sábado, 9h–18h
+          </div>
+        </div>
+      </div>
+      <!-- Right FAQ -->
+      <div id="faq" class="reveal">
+        <div class="sec-eye">❓ FAQ</div>
+        <h2 class="sec-title" style="margin-bottom:4px">Perguntas <em>Frequentes</em></h2>
+        <div class="sec-rule" style="margin-bottom:24px"></div>
+        <div id="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-qt">É permitido comprar animais exóticos no Brasil?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-ans"><div class="faq-ans-in">Sim, desde que o animal seja proveniente de criadouros legalmente registrados no IBAMA (IN 07/2015). Animais criados em cativeiro regularizado podem ser comercializados. Operamos 100% dentro da lei — todo animal acompanha documentação completa de procedência.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-qt">Preciso de licença para ter esses animais em casa?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-ans"><div class="faq-ans-in">Para a maioria das espécies exóticas (répteis estrangeiros, aves australianas, aracnídeos), não há obrigação de registro individual — basta guardar os documentos de origem. Orientamos cada comprador individualmente sobre as exigências da sua espécie.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-qt">Como funciona a entrega dos animais?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-ans"><div class="faq-ans-in">Enviamos via transportadora especializada em animais vivos, com embalagem termicamente controlada, ventilação adequada e rastreamento em tempo real. Capitais: 24–48h. Interior: prazo variável. Todo o processo é acompanhado de perto pela nossa equipe.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-qt">Os animais são vacinados e acompanhados por veterinário?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-ans"><div class="faq-ans-in">Todos os animais passam por quarentena, avaliação clínica e laudo veterinário antes de serem entregues. Espécies que requerem vacinação (ferrets, mamíferos) recebem protocolo completo. Você recebe o histórico de saúde com o animal.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-qt">Posso devolver o animal se não conseguir mais cuidar?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-ans"><div class="faq-ans-in">Sim. Temos política de recolhimento humanitário. Se por qualquer motivo não conseguir mais cuidar do animal, entre em contato. Nunca abandone ou solte um animal exótico — isso é ilegal e prejudica ecossistemas locais.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" onclick="toggleFaq(this)">
+              <span class="faq-qt">Como faço para comprar? Vocês aceitam parcelamento?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-ans"><div class="faq-ans-in">Entre em contato pelo WhatsApp ou e-mail, informe o animal de interesse e nossa equipe enviará disponibilidade, valores e condições. Aceitamos Pix, cartão de crédito (parcelado em até 12x) e transferência bancária.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-g">
+      <div>
+        <div class="footer-logo">
+          <div class="footer-mark">🐾</div>
+          <div>
+            <span class="footer-text">Fauna Elite</span>
+            <span class="footer-text-sub">Animais Exóticos</span>
+          </div>
+        </div>
+        <p class="footer-desc">Especialistas em animais exóticos com foco em saúde, procedência legal e bem-estar animal. Mais de 5 anos conectando tutores a seus companheiros ideais.</p>
+        <div class="footer-soc">
+          <a href="#" class="fsoc">📷</a>
+          <a href="#" class="fsoc">▶</a>
+          <a href="#" class="fsoc">🎵</a>
+          <a href="#" class="fsoc">💬</a>
+        </div>
+      </div>
+      <div>
+        <p class="fcol-t">Categorias</p>
+        <div class="fcol-links">
+          <a class="flink" href="#" onclick="setCat(event,'aves')">🦜 Aves</a>
+          <a class="flink" href="#" onclick="setCat(event,'repteis')">🦎 Répteis</a>
+          <a class="flink" href="#" onclick="setCat(event,'serpentes')">🐍 Serpentes</a>
+          <a class="flink" href="#" onclick="setCat(event,'mamiferos')">🐾 Mamíferos</a>
+          <a class="flink" href="#" onclick="setCat(event,'aracnideos')">🕷️ Aracnídeos</a>
+          <a class="flink" href="#" onclick="setCat(event,'aquaticos')">🌊 Aquáticos</a>
+        </div>
+      </div>
+      <div>
+        <p class="fcol-t">Informações</p>
+        <div class="fcol-links">
+          <a href="#cuidados" class="flink">Guia de cuidados</a>
+          <a href="#sobre"    class="flink">Sobre nós</a>
+          <a href="#contato"  class="flink">Contato</a>
+        </div>
+      </div>
+      <div>
+        <p class="fcol-t">Contato</p>
+        <div class="fcol-links">
+          <span class="flink">📍 Brasília, DF</span>
+          <a href="tel:+5561982362423" class="flink">📞 (61) 98236-2423</a>
+          <a href="mailto:contato@faunaelite.com" class="flink">✉️ contato@faunaelite.com</a>
+          <span class="flink" style="color:var(--accent)">⏰ Seg–Sáb, 9h–18h</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <p class="footer-copy">© 2025 ExoticPet. Todos os direitos reservados.</p>
+      <div class="footer-leg"><a href="#">Privacidade</a><a href="#">Termos</a><a href="#">IBAMA</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════ MODAL ══════════════ -->
+<div class="modal-ov" id="modal-ov" onclick="modalClose(event)">
+  <div class="modal" id="modal">
+    <div class="modal-x"><button class="modal-x-btn" onclick="closeModal()" aria-label="Fechar">✕</button></div>
+    <div class="modal-grid" id="modal-inner"></div>
+  </div>
+</div>
+
+<!-- ══════════════ TOAST ══════════════ -->
+<div class="toast" id="toast">
+  <span id="toast-ico"></span>
+  <span id="toast-msg" style="flex:1;line-height:1.4"></span>
+  <button class="toast-x" onclick="hideToast()">✕</button>
+</div>
+
+<!-- ══════════════════════════════════════
+     SCRIPT — DADOS + LÓGICA
+══════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ──────────────────────────────────────────
+   DADOS DOS ANIMAIS
+────────────────────────────────────────── */
+const ANIMALS = [
+
+  /* ═══════ AVES ═══════ */
+  {
+    id:'faisao-dourado', nome:'Faisão Dourado', nomeCi:'Chrysolophus pictus',
+    cat:'aves', emoji:'🦚', grad:['#92400E','#B45309'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 349",
+    img:"https://cdn.pixabay.com/photo/2018/03/10/17/33/goldfasan-3214663_1280.jpg", destaque:false,
+    tamanho:'65–115 cm (incluindo cauda)', alim:'Omnívoro — grãos, sementes, insetos e frutas',
+    origem:'Montanhas da China Central e Ocidental',
+    desc:'Ave ornamental de beleza espetacular. A plumagem dourada e vermelha do macho é uma das mais impressionantes do reino animal. Criado em cativeiro há séculos, se adapta bem a aviários amplos.',
+    temp:'15–25 °C', umid:'50–65%', vida:'15–20 anos'
+  },
+  {
+    id:'pavao-azul', nome:'Pavão Azul', nomeCi:'Pavo cristatus',
+    cat:'aves', emoji:'🦚', grad:['#1E3A8A','#1D4ED8'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 1.290",
+    img:"https://cdn.pixabay.com/photo/2025/12/11/11/08/beautiful-10008353_1280.jpg", destaque:true,
+    tamanho:'180–230 cm (cauda expandida)', alim:'Onívoro — grãos, pequenos répteis, insetos',
+    origem:'Sul da Ásia — Índia e Sri Lanka',
+    desc:'Símbolo de majestade, o pavão azul é a ave ornamental mais imponente do mundo. A roda do macho pode atingir 1,5 m. Necessita de espaço externo amplo e tolera bem o clima brasileiro.',
+    temp:'10–35 °C', umid:'40–70%', vida:'20–25 anos'
+  },
+  {
+    id:'neophema', nome:'Neophema Turquoisine', nomeCi:'Neophema pulchella',
+    cat:'aves', emoji:'🦜', grad:['#0E7490','#0891B2'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 399",
+    img:"https://upload.wikimedia.org/wikipedia/commons/4/48/Neophema_pulchella_male_-_Glen_Davis.jpg", destaque:false,
+    tamanho:'20–22 cm', alim:'Granívoro — sementes pequenas, gramíneas e verduras',
+    origem:'Sudeste da Austrália',
+    desc:'Pequeno periquito australiano com turquesa vibrante no peito e ombros. Temperamento tranquilo, relativamente silencioso e ideal para aviários. Existem diversas mutações de cor.',
+    temp:'18–28 °C', umid:'40–55%', vida:'10–15 anos'
+  },
+  {
+    id:'periquito-ingles', nome:'Periquito Inglês', nomeCi:'Melopsittacus undulatus',
+    cat:'aves', emoji:'🦜', grad:['#15803D','#16A34A'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 69",
+    img:"https://cdn.pixabay.com/photo/2019/01/04/23/32/parakeet-english-3914319_1280.jpg", destaque:true,
+    tamanho:'18–20 cm', alim:'Granívoro — sementes específicas, frutas e legumes',
+    origem:'Austrália (ambientes abertos e savanas)',
+    desc:'O psitacídeo mais popular do mundo. Inteligente, pode aprender a falar e imitar sons. Sociável, melhor criado em pares. Existe em centenas de mutações de cor — verde, azul, branco, lutino e mais.',
+    temp:'18–30 °C', umid:'40–60%', vida:'8–12 anos'
+  },
+  {
+    id:'red-rumped', nome:'Periquito Red Rumped', nomeCi:'Psephotus haematonotus',
+    cat:'aves', emoji:'🦜', grad:['#166534','#15803D'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 219",
+    img:"https://cdn.download.ams.birds.cornell.edu/api/v2/asset/622574570/900", destaque:false,
+    tamanho:'25–28 cm', alim:'Granívoro — sementes, gramíneas, frutas e legumes',
+    origem:'Sudeste da Austrália (pastagens e campos)',
+    desc:'Periquito australiano de porte médio com lombo vermelho vivo característico no macho. Dócil, resistente e de fácil manutenção. Excellent opção para aviários mistos.',
+    temp:'15–30 °C', umid:'40–60%', vida:'12–15 anos'
+  },
+  {
+    id:'diamante-mandarim', nome:'Diamante Mandarim', nomeCi:'Taeniopygia guttata',
+    cat:'aves', emoji:'🐦', grad:['#9A3412','#C2410C'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 89",
+    img:"mandarim.jpg", destaque:false,
+    tamanho:'10–11 cm', alim:'Granívoro — sementes de painço, alpiste e araruta',
+    origem:'Austrália e Indonésia (áreas áridas)',
+    desc:'O menor pássaro canoro popular no mundo. Macho com bochechas laranjas e peito barrado em preto e branco. Extremamente sociável — vive melhor em grupos. Canto suave e agradável.',
+    temp:'18–28 °C', umid:'40–55%', vida:'5–8 anos'
+  },
+  {
+    id:'canario', nome:'Canário Belga', nomeCi:'Serinus canaria',
+    cat:'aves', emoji:'🐦', grad:['#854D0E','#A16207'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 149",
+    img:"https://cdn.pixabay.com/photo/2024/05/24/12/29/yellow-8784962_1280.jpg", destaque:false,
+    tamanho:'16–19 cm', alim:'Granívoro — ração específica, frutas e verduras',
+    origem:'Ilhas Canárias (selecionado em cativeiro europeu)',
+    desc:'Famoso pelo canto melodioso e longo. Existem raças de postura (Belga, Yorkshire) e de canto (Roller, Waterslager). Não necessita de companheiro — o macho canta mais quando solitário.',
+    temp:'15–28 °C', umid:'40–60%', vida:'10–15 anos'
+  },
+  {
+    id:'agapornis', nome:'Agapornis (Inseparável)', nomeCi:'Agapornis roseicollis',
+    cat:'aves', emoji:'🦜', grad:['#065F46','#047857'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 229",
+    img:"https://cdn.pixabay.com/photo/2026/02/10/12/10/erwinbosman-lovebirds-10115511_1280.jpg", destaque:true,
+    tamanho:'13–17 cm', alim:'Granívoro — sementes, frutas, verduras e flores',
+    origem:'África Subsaariana (savanas e florestas secas)',
+    desc:'Psitacídeo africano de pequeno porte com laço afetivo intenso entre casais — literalmente "inseparáveis". Coloridos, brincalhões e de caráter forte. Existem dezenas de mutações de cor.',
+    temp:'18–30 °C', umid:'50–65%', vida:'12–15 anos'
+  },
+  {
+    id:'calopsita', nome:'Calopsita (Catarina)', nomeCi:'Nymphicus hollandicus',
+    cat:'aves', emoji:'🦜', grad:['#78350F','#92400E'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 219",
+    img:"https://cdn.pixabay.com/photo/2018/09/01/17/35/animal-world-3647223_1280.jpg", destaque:true,
+    tamanho:'28–33 cm', alim:'Granívoro — ração própria, sementes e verduras',
+    origem:'Austrália (interior árido e semiárido)',
+    desc:'A mais popular entre os psitacídeos de médio porte. Dócil, aprende a assobiar músicas e imitar vozes. Mancha amarela nas bochechas característica. Crista móvel expressa humor. Ótima para famílias.',
+    temp:'18–30 °C', umid:'40–60%', vida:'15–20 anos'
+  },
+  {
+    id:'forpus', nome:'Forpus (Tuim)', nomeCi:'Forpus coelestis',
+    cat:'aves', emoji:'🦜', grad:['#1D4ED8','#2563EB'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 299",
+    img:"https://cdn.pixabay.com/photo/2019/02/07/21/08/animals-3982182_1280.jpg", destaque:false,
+    tamanho:'12–13 cm', alim:'Granívoro — sementes pequenas, frutas e néctar',
+    origem:'Peru e Equador (florestas tropicais)',
+    desc:'Menor psitacídeo das Américas. Macho com turquesa brilhante nas asas e nuca. Personalidade grande em corpo pequeno — curioso, ativo e pode aprender algumas palavras.',
+    temp:'20–30 °C', umid:'50–65%', vida:'10–15 anos'
+  },
+  {
+    id:'lori', nome:'Lóri-Arco-Íris', nomeCi:'Trichoglossus moluccanus',
+    cat:'aves', emoji:'🦜', grad:['#7C3AED','#6D28D9'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 2.990",
+    img:"https://cdn.pixabay.com/photo/2023/04/02/09/24/rainbow-lorikeet-7894138_1280.jpg", destaque:false,
+    tamanho:'25–30 cm', alim:'Nectarívoro — néctar, pólen, frutas e papinha específica',
+    origem:'Austrália, Tasmânia e ilhas do Pacífico',
+    desc:'Lório de cores deslumbrantes — cabeça azul, peito alaranjado, dorso verde. Lingua especializada em néctar. Exige dieta líquida específica e muita higiene. Barulhento e extremamente ativo.',
+    temp:'18–28 °C', umid:'50–70%', vida:'20–30 anos'
+  },
+  {
+    id:'bourke', nome:'Periquito Bourke', nomeCi:'Neopsephotus bourkii',
+    cat:'aves', emoji:'🦜', grad:['#BE185D','#DB2777'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 299",
+    img:"https://cdn.pixabay.com/photo/2021/08/02/20/41/bourkes-parakeet-6517849_1280.jpg", destaque:false,
+    tamanho:'21–23 cm', alim:'Granívoro — sementes, gramíneas e verduras',
+    origem:'Centro-Sul da Austrália (áreas áridas)',
+    desc:'Periquito de temperamento excepcionalmente tranquilo e dócil. Plumagem rosada no peito, marrom na cabeça. Crepuscular — mais ativo ao amanhecer e entardecer. Ótima escolha para apartamentos.',
+    temp:'15–28 °C', umid:'35–55%', vida:'10–15 anos'
+  },
+  {
+    id:'pombo-fantail', nome:'Pombo Fantail', nomeCi:'Columba livia (raça fantail)',
+    cat:'aves', emoji:'🕊️', grad:['#374151','#4B5563'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 99",
+    img:"https://cdn.pixabay.com/photo/2022/08/25/18/59/bird-7411065_1280.jpg", destaque:false,
+    tamanho:'28–33 cm', alim:'Granívoro — milho, sorgo, trigo e ração específica',
+    origem:'Desenvolvido na Índia a partir do pombo-doméstico',
+    desc:'Raça ornamental com cauda em leque espetacular que pode ter até 40 penas. Extremamente manso e fácil de criar. Ideal para pombal decorativo. Existem variações brancas, pretas e tricolores.',
+    temp:'10–35 °C', umid:'40–70%', vida:'10–15 anos'
+  },
+  {
+    id:'cabeca-de-ameixa', nome:'Cabeça de Ameixa', nomeCi:'Psittacula cyanocephala',
+    cat:'aves', emoji:'🦜', grad:['#6B21A8','#7C3AED'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 2.190",
+    img:"https://cdn.pixabay.com/photo/2022/07/06/14/03/birds-flock-7305226_1280.jpg", destaque:false,
+    tamanho:'36–38 cm', alim:'Granívoro — frutas, sementes, brotos e flores',
+    origem:'Sul da Ásia — Índia, Sri Lanka e Nepal',
+    desc:'Macho com cabeça roxo-avermelhada inconfundível, fêmea com cabeça cinza. Psitacídeo de médio porte, inteligente e capaz de falar com boa dicção. Requer manejo cuidadoso — pode morder.',
+    temp:'18–30 °C', umid:'50–65%', vida:'25–30 anos'
+  },
+  {
+    id:'moustache', nome:'Periquito Moustache', nomeCi:'Psittacula alexandri',
+    cat:'aves', emoji:'🦜', grad:['#1E40AF','#1D4ED8'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 1.990",
+    img:"https://avesornamentaisjej.cdn.magazord.com.br/img/2024/03/produto/829/159-mustache.png?ims=600x600", destaque:false,
+    tamanho:'33–38 cm', alim:'Granívoro — frutas, sementes e brotos',
+    origem:'Sudeste Asiático — Java e ilhas vizinhas',
+    desc:'Conhecido pelo bigode preto característico e bico vermelho. Psitacídeo de médio porte e carisma impressionante. Bom falador quando criado desde filhote. Exige socialização precoce.',
+    temp:'18–30 °C', umid:'50–65%', vida:'20–30 anos'
+  },
+  {
+    id:'galinha-sedosa', nome:'Galinha Sedosa', nomeCi:'Gallus gallus domesticus (Silkie)',
+    cat:'aves', emoji:'🐓', grad:['#F9FAFB','#F3F4F6'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 79",
+    img:"https://cdn.pixabay.com/photo/2023/06/05/07/31/chicken-8041636_1280.jpg", destaque:false,
+    tamanho:'25–30 cm', alim:'Onívoro — ração para galinhas, vegetais e insetos',
+    origem:'China e Sudeste Asiático (raça selecionada há séculos)',
+    desc:'Raça ornamental de penugem macia como seda e pele preta única. Extremamente dócil e maternal — usada como choca de outras aves. Ótima como pet educativo para crianças. Codornas japonesas também disponíveis.',
+    temp:'15–32 °C', umid:'45–65%', vida:'5–10 anos'
+  },
+
+  /* ═══════ RÉPTEIS ═══════ */
+  {
+    id:'dragao-barbudo', nome:'Dragão Barbudo', nomeCi:'Pogona vitticeps',
+    cat:'repteis', emoji:'🦎', grad:['#92400E','#B45309'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 2.549",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Pogona_vitticeps.JPG?width=600", destaque:true,
+    tamanho:'40–60 cm', alim:'Onívoro — insetos, vegetais e frutas',
+    origem:'Austrália (regiões áridas e semiáridas)',
+    desc:'Um dos répteis mais populares como pet. Dócil, interativo e com personalidade marcante. Reconhece seu tutor e exibe comportamentos únicos de comunicação com os braços.',
+    temp:'24–42 °C', umid:'30–40%', vida:'10–15 anos'
+  },
+  {
+    id:'iguana-verde', nome:'Iguana Verde', nomeCi:'Iguana iguana',
+    cat:'repteis', emoji:'🦎', grad:['#166534','#15803D'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 229",
+    img:"https://cdn.pixabay.com/photo/2026/01/27/04/00/iguana-10089944_1280.jpg", destaque:false,
+    tamanho:'1,2–1,8 m', alim:'Herbívoro — folhas, flores e frutas',
+    origem:'América Central e do Sul',
+    desc:'Impressionante e majestosa. Requer espaço considerável e dedicação. Quando bem socializada desde filhote, torna-se dócil e responde ao seu tutor.',
+    temp:'28–38 °C', umid:'70–80%', vida:'15–20 anos'
+  },
+  {
+    id:'gecko-leopardo', nome:'Leopard Gecko', nomeCi:'Eublepharis macularius',
+    cat:'repteis', emoji:'🦎', grad:['#713F12','#92400E'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 1.349",
+    img:"https://cdn.pixabay.com/photo/2024/08/14/10/21/leopard-gecko-8968214_1280.jpg", destaque:true,
+    tamanho:'20–28 cm', alim:'Carnívoro — grilos, tenébrios e outras larvas',
+    origem:'Ásia Central e Oriente Médio',
+    desc:'Pequeno, robusto e de manuseio simples. Perfeito para iniciantes. Não necessita de UVB e seu habitat pode ser compacto. Possui a incrível capacidade de regenerar a cauda.',
+    temp:'26–32 °C', umid:'30–40%', vida:'15–20 anos'
+  },
+  {
+    id:'teiu', nome:'Teiú Argentino', nomeCi:'Salvator merianae',
+    cat:'repteis', emoji:'🦎', grad:['#1F2937','#374151'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 699",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Tupinambis_rufescens01.jpg/330px-Tupinambis_rufescens01.jpg", destaque:false,
+    tamanho:'80–150 cm', alim:'Onívoro — ração, frutas, ovos, pequenos roedores e insetos',
+    origem:'Argentina, Brasil e Uruguai (campos e matas ciliares)',
+    desc:'O lagarto mais inteligente do hemisfério sul. Aprende seu nome, reconhece rostos e desenvolve vínculo afetivo forte com o tutor. Lengua bífida e musculoso. Exige espaço e manejo precoce.',
+    temp:'25–35 °C', umid:'50–70%', vida:'15–20 anos'
+  },
+  {
+    id:'jabuti', nome:'Jabuti Piranga', nomeCi:'Chelonoidis carbonaria',
+    cat:'repteis', emoji:'🐢', grad:['#78350F','#92400E'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 1.279",
+    img:"https://cdn.pixabay.com/photo/2017/06/08/03/59/jabuti-2382402_1280.jpg", destaque:true,
+    tamanho:'30–45 cm', alim:'Herbívoro — folhas, frutas e ração específica',
+    origem:'América do Sul (savanas e cerrado)',
+    desc:'Tartaruga terrestre brasileira de carapaça alta e patas avermelhadas. Longa vida, personalidade marcante e completamente herbívoro. Necessita de sol direto para síntese de vitamina D3.',
+    temp:'24–32 °C', umid:'60–80%', vida:'60–100 anos'
+  },
+  {
+    id:'uromastyx', nome:'Uromastyx', nomeCi:'Uromastyx acanthinura',
+    cat:'repteis', emoji:'🦎', grad:['#D97706','#F59E0B'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 990",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Uromastyx_dispar_flavifasciata.jpg?width=600", destaque:false,
+    tamanho:'30–40 cm', alim:'Herbívoro — sementes, vegetais e leguminosas',
+    origem:'Norte da África e Oriente Médio (desertos e semiáridos)',
+    desc:'Lagarto do deserto com cauda espinhosa usada como defesa. Herbívoro estrito — mais fácil de alimentar que muitos répteis. Existem morfos de cores impressionantes: amarelo, laranja e vermelho.',
+    temp:'32–55 °C', umid:'10–25%', vida:'15–20 anos'
+  },
+  {
+    id:'anolis', nome:'Anolis Verde', nomeCi:'Anolis carolinensis',
+    cat:'repteis', emoji:'🦎', grad:['#065F46','#047857'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 139",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Green_anole.jpg?width=600", destaque:false,
+    tamanho:'15–20 cm', alim:'Carnívoro — grilos, moscas e outros insetos pequenos',
+    origem:'Sudeste dos EUA e Caribe',
+    desc:'Pequeno lagarto arborícola capaz de mudar de cor entre verde e marrom. Papo avermelhado vistoso nos machos. Ágil e fascinante, melhor observado que manuseado. Ótimo para terrários plantados.',
+    temp:'24–30 °C', umid:'60–80%', vida:'5–8 anos'
+  },
+  {
+    id:'monitor-savana', nome:'Monitor da Savana', nomeCi:'Varanus exanthematicus',
+    cat:'repteis', emoji:'🦎', grad:['#1C1917','#292524'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 1.590",
+    img:"https://lh5.googleusercontent.com/proxy/Lrot4PtUESOE0mWp5jsGogYT-taB-eqP49ShAtFRiOTUhVkwy0WZHbZJrtS_fEerrV7RM0NUkpSUV8FBt40jm0SeNEB8-rTCYIhxbhcSdKuKL-Gb5VZFYWBGH6F7JhnY-Q", destaque:false,
+    tamanho:'90–120 cm', alim:'Carnívoro — roedores, ovos, cobras e insetos grandes',
+    origem:'África Subsaariana (savanas e campos abertos)',
+    desc:'Varano africano de menor porte, considerado mais manejável que outras espécies. Quando criado desde filhote com socialização constante, torna-se surpreendentemente dócil. Altamente inteligente.',
+    temp:'26–40 °C', umid:'30–50%', vida:'10–15 anos'
+  },
+  {
+    id:'ameiva', nome:'Ameiva', nomeCi:'Ameiva ameiva',
+    cat:'repteis', emoji:'🦎', grad:['#14532D','#166534'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 219",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Ameiva_ameiva.jpg?width=600", destaque:false,
+    tamanho:'35–50 cm', alim:'Onívoro — insetos, pequenas frutas e ovos',
+    origem:'América do Sul (campos abertos e cerrado)',
+    desc:'Lagarto terrestre rápido e curioso com dorso verde-esmeralda metálico nos machos. Ativo durante o dia, excelente metabolismo. Requer substrato de areia fina para comportamento natural de escavação.',
+    temp:'26–34 °C', umid:'50–65%', vida:'8–12 anos'
+  },
+  {
+    id:'tartaruga-agua', nome:'Tigre d\'Água', nomeCi:'Trachemys scripta elegans',
+    cat:'repteis', emoji:'🐢', grad:['#065F46','#047857'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 189",
+    img:"https://www.jornalbomdia.com.br/tb_noticias/67259/d0feb524-02e4-45b7-9bbe-c598bae275d6.jpg", destaque:false,
+    tamanho:'20–30 cm', alim:'Onívoro — pellets, peixes, vegetais e camarões',
+    origem:'Sul dos EUA e norte do México',
+    desc:'A tartaruga aquática mais popular do mundo. Semi-aquática — necessita de área seca para basking. Longevidade impressionante. Reconhece seu tutor com o tempo e nada elegantemente.',
+    temp:'24–35 °C', umid:'Aquático', vida:'20–40 anos'
+  },
+
+  /* ═══════ SERPENTES ═══════ */
+  {
+    id:'piton-bola', nome:'Píton Bola', nomeCi:'Python regius',
+    cat:'serpentes', emoji:'🐍', grad:['#1C1917','#292524'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 3.690",
+    img:"https://cdn.pixabay.com/photo/2021/09/22/19/47/baby-python-6647825_1280.jpg", destaque:true,
+    tamanho:'1,0–1,5 m', alim:'Carnívoro — roedores (ratos e camundongos)',
+    origem:'África Subsaariana (savanas e florestas)',
+    desc:'A python mais popular do mundo. Temperamento calmo e defensivo, enrolando-se em bola quando ameaçada. Existem centenas de morfos genéticos com padrões e cores únicos.',
+    temp:'27–32 °C', umid:'50–60%', vida:'20–30 anos'
+  },
+  {
+    id:'jiboa', nome:'Jibóia Comum', nomeCi:'Boa constrictor imperator',
+    cat:'serpentes', emoji:'🐍', grad:['#78350F','#92400E'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 1.790",
+    img:"https://www.ceara.gov.br/wp-content/uploads/2024/12/boa-c-constrictor-vicosa-10-1-1200x800.jpg", destaque:false,
+    tamanho:'1,5–2,5 m', alim:'Carnívoro — roedores e aves',
+    origem:'América Central (subespécie colombiana)',
+    desc:'A jibóia clássica, mais compacta que a Boa constrictor constrictor sul-americana. Excelente temperamento quando criada em cativeiro. Vivípara — dá à luz filhotes vivos. Padrão em sela.',
+    temp:'27–32 °C', umid:'60–70%', vida:'20–30 anos'
+  },
+  {
+    id:'jiboa-arco-iris', nome:'Jibóia Arco-Íris', nomeCi:'Epicrates cenchria',
+    cat:'serpentes', emoji:'🐍', grad:['#7C3AED','#6D28D9'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 3.590",
+    img:"https://cdn.pixabay.com/photo/2018/06/19/12/48/boa-constrictor-3484406_1280.jpg", destaque:true,
+    tamanho:'1,5–1,8 m', alim:'Carnívoro — roedores e pássaros',
+    origem:'América do Sul (Amazônia e Cerrado)',
+    desc:'Uma das serpentes mais belas do mundo. A escamação iridescente cria um efeito arco-íris sob luz direta — resultado de microestruturas que refratam a luz. Nativa do Brasil, criação legal em cativeiro.',
+    temp:'26–30 °C', umid:'70–85%', vida:'15–20 anos'
+  },
+  {
+    id:'sand-boa', nome:'Sand Boa', nomeCi:'Gongylophis conicus',
+    cat:'serpentes', emoji:'🐍', grad:['#D97706','#B45309'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 1.490",
+    img:"https://jonathansjungleroadshow.co.uk/wp-content/uploads/2024/11/KSB-1.jpg", destaque:false,
+    tamanho:'45–70 cm', alim:'Carnívoro — ratos neonatos e adultos pequenos',
+    origem:'Sul da Ásia (desertos e regiões áridas)',
+    desc:'Pequena boa de temperamento dócil e tamanho compacto. Naturalmente subterrânea — passa boa parte do tempo enterrada no substrato. Ótima para iniciantes que querem uma serpente menor.',
+    temp:'26–32 °C', umid:'20–40%', vida:'15–20 anos'
+  },
+  {
+    id:'corallus-hortulanus', nome:'Jibóia Arborícola', nomeCi:'Corallus hortulanus',
+    cat:'serpentes', emoji:'🐍', grad:['#166534','#15803D'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 2.490",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Corallus_hortulanus.jpg?width=600", destaque:false,
+    tamanho:'90–150 cm', alim:'Carnívoro — lagartos, ratos e pássaros',
+    origem:'América do Sul (Amazônia e florestas úmidas)',
+    desc:'Constritora arborícola amazônica com coloração muito variável — pode ser amarela, laranja, cinza ou padrão "garden phase". Dentes longos para captura de presas em galhos. Manejo exige cuidado.',
+    temp:'26–30 °C', umid:'70–85%', vida:'15–20 anos'
+  },
+  {
+    id:'corallus-caninus', nome:'Jibóia Verde Esmeralda', nomeCi:'Corallus caninus',
+    cat:'serpentes', emoji:'🐍', grad:['#064E3B','#065F46'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 3.990",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Corallus_caninus.jpg?width=600", destaque:true,
+    tamanho:'1,5–1,8 m', alim:'Carnívoro — ratos, pássaros e lagartos',
+    origem:'Amazônia — Brasil, Peru, Guiana e Venezuela',
+    desc:'Considerada uma das mais belas serpentes do mundo. Verde-esmeralda vivo com marcas brancas dorsais. Comportamento arborícola puro — raramente toca o chão. Espécie "avançada" por excelência.',
+    temp:'26–30 °C', umid:'75–90%', vida:'15–20 anos'
+  },
+  {
+    id:'king-snake', nome:'King Snake', nomeCi:'Lampropeltis getula',
+    cat:'serpentes', emoji:'🐍', grad:['#1C1917','#292524'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 1.399",
+    img:"https://cdn.pixabay.com/photo/2014/07/20/12/59/snake-397802_1280.jpg", destaque:false,
+    tamanho:'90–120 cm', alim:'Carnívoro — ratos, lagartos e outras serpentes',
+    origem:'América do Norte (diversas regiões)',
+    desc:'Constrictora não-peçonhenta imune ao veneno de cobras cascavel. Excelente temperamento em cativeiro, robusta e com excelente apetite. Padrão preto e amarelo clássico ou variações regionais.',
+    temp:'24–30 °C', umid:'40–60%', vida:'15–20 anos'
+  },
+  {
+    id:'milk-snake', nome:'Milk Snake', nomeCi:'Lampropeltis triangulum',
+    cat:'serpentes', emoji:'🐍', grad:['#991B1B','#B91C1C'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 1.349",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Lampropeltis_triangulum_hondurensis.jpg?width=600", destaque:false,
+    tamanho:'60–100 cm', alim:'Carnívoro — ratos neonatos e adultos jovens',
+    origem:'América do Norte e Central',
+    desc:'Colubridae com anéis vermelhos, negros e brancos que mimetizam a coral venenosa. Completamente inofensiva, muito dócil e de tamanho manejável. Ótima escolha para iniciantes que querem colorido.',
+    temp:'22–28 °C', umid:'40–60%', vida:'15–20 anos'
+  },
+
+  /* ═══════ MAMÍFEROS ═══════ */
+  {
+    id:'porquinho-india', nome:'Porquinho-da-Índia', nomeCi:'Cavia porcellus',
+    cat:'mamiferos', emoji:'🐹', grad:['#92400E','#B45309'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 69",
+    img:"https://cdn.pixabay.com/photo/2014/09/30/17/04/guinea-pig-467399_1280.jpg", destaque:true,
+    tamanho:'20–25 cm', alim:'Herbívoro — feno, ração específica, legumes e frutas',
+    origem:'Andes Sul-Americanos (Peru e Bolívia)',
+    desc:'Um dos pets mais carinhosos e silenciosos existentes. Sociável, emite sons de satisfação (purring) e não morde habitualmente. Vive bem em grupos. Necessita de vitamina C diária na dieta.',
+    temp:'18–24 °C', umid:'40–60%', vida:'5–7 anos'
+  },
+  {
+    id:'mini-coelho', nome:'Mini Coelho', nomeCi:'Oryctolagus cuniculus (anão)',
+    cat:'mamiferos', emoji:'🐰', grad:['#F9FAFB','#E5E7EB'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 199",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Oryctolagus_cuniculus_Rcdo.jpg?width=600", destaque:false,
+    tamanho:'30–40 cm', alim:'Herbívoro — feno timothy, ração e vegetais frescos',
+    origem:'Europa (selecionado em cativeiro)',
+    desc:'Raças anãs (Dutch, Mini Rex, Lionhead) como pets altamente afetivos. Podem aprender truques, usar caixa de areia e adoram explorar. Feno deve corresponder a 70% da dieta para saúde digestiva.',
+    temp:'15–22 °C', umid:'40–60%', vida:'8–12 anos'
+  },
+  {
+    id:'ferret', nome:'Ferret (Furão)', nomeCi:'Mustela putorius furo',
+    cat:'mamiferos', emoji:'🦦', grad:['#78350F','#92400E'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 3.190",
+    img:"https://cdn.pixabay.com/photo/2019/10/08/09/23/animal-4534480_1280.jpg", destaque:false,
+    tamanho:'35–55 cm', alim:'Carnívoro estrito — ração alta proteína, carne crua e ovos',
+    origem:'Doméstico — descendente do tourão europeu',
+    desc:'Carnívoro pequeno com energia inesgotável e curiosidade sem limites. Dorme até 18h/dia mas, acordado, explora tudo. Altamente sociável — melhor em pares. Requer vacinação contra cinomose.',
+    temp:'15–22 °C', umid:'40–60%', vida:'6–10 anos'
+  },
+  {
+    id:'hamster-twister', nome:'Hamster Russo (Twister)', nomeCi:'Phodopus sungorus',
+    cat:'mamiferos', emoji:'🐹', grad:['#374151','#4B5563'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 99",
+    img:"https://cdn.pixabay.com/photo/2018/02/18/13/03/cute-3162209_1280.jpg", destaque:false,
+    tamanho:'7–10 cm', alim:'Onívoro — ração específica, sementes e verduras',
+    origem:'Sibéria e Cazaquistão (estepes)',
+    desc:'Hamster anão russo com pelagem que muda de cor (cinza no verão, branco no inverno). A morph "Twister" possui padrão de manchas irregulares muito procurado. Crepuscular, ativo e fácil de criar.',
+    temp:'18–22 °C', umid:'30–50%', vida:'2–3 anos'
+  },
+  {
+    id:'bengal-cat', nome:'Bengal Cat (Gato Bengal)', nomeCi:'Felis catus × Prionailurus bengalensis',
+    cat:'mamiferos', emoji:'🐱', grad:['#854D0E','#B45309'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 3.990",
+    img:"https://cdn.pixabay.com/photo/2022/11/17/17/46/cat-7598590_1280.jpg", destaque:true,
+    tamanho:'40–50 cm', alim:'Carnívoro — ração premium ou BARF',
+    origem:'EUA (híbrido do gato-leopardo asiático × doméstico)',
+    desc:'Híbrido doméstico com rosetas e marcações de leopardo. Altamente ativo, inteligente e ama água — comportamento incomum para gatos. Precisa de enriquecimento ambiental intenso e dono experiente.',
+    temp:'18–26 °C', umid:'40–65%', vida:'12–16 anos'
+  },
+  {
+    id:'ourico-africano', nome:'Ouriço Africano (Hedgehog)', nomeCi:'Atelerix albiventris',
+    cat:'mamiferos', emoji:'🦔', grad:['#713F12','#92400E'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 690",
+    img:"https://cdn.pixabay.com/photo/2016/11/27/14/42/african-1862972_1280.jpg", destaque:false,
+    tamanho:'15–25 cm', alim:'Onívoro — ração específica, insetos e frutas',
+    origem:'África Central e Oriental',
+    desc:'Pequeno, curioso e cheio de personalidade. Espinhos são defesa natural — não causam dor em manuseio correto. Ativo principalmente à noite, necessita de roda de exercícios diariamente.',
+    temp:'22–28 °C', umid:'40–60%', vida:'4–7 anos'
+  },
+  {
+    id:'sugar-glider', nome:'Sugar Glider', nomeCi:'Petaurus breviceps',
+    cat:'mamiferos', emoji:'🐿️', grad:['#1E3A8A','#1D4ED8'],
+    nivel:'Avançado', status:'Disponível',
+    preco:"A partir de R$ 2.190",
+    img:"https://pet-health-content-media.chewy.com/wp-content/uploads/2014/06/23152303/sugar-glider-1024x576.jpg", destaque:false,
+    tamanho:'12–15 cm (+cauda)', alim:'Onívoro — néctar, frutas, insetos e proteínas',
+    origem:'Austrália, Papua Nova Guiné e Indonésia',
+    desc:'Marsupial planador altamente social. Forma laços afetivos fortes com tutores. Membrana (patagium) permite planar entre árvores. Vive melhor em pares — solitário pode desenvolver depressão.',
+    temp:'21–27 °C', umid:'50–70%', vida:'10–15 anos'
+  },
+  {
+    id:'chinchila', nome:'Chinchila', nomeCi:'Chinchilla lanigera',
+    cat:'mamiferos', emoji:'🐭', grad:['#374151','#4B5563'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 449",
+    img:"https://cdn.pixabay.com/photo/2014/01/03/13/59/chinchillas-238049_1280.jpg", destaque:false,
+    tamanho:'25–35 cm', alim:'Herbívoro — feno timothy, pellets e ervas secas',
+    origem:'Andes Sul-Americanos',
+    desc:'O pelo mais macio do mundo animal. Extremamente ágil e curiosa. Banhos de areia vulcânica para manter a pelagem saudável. Muito sensível ao calor — não pode ultrapassar 25°C.',
+    temp:'15–20 °C', umid:'30–50%', vida:'10–15 anos'
+  },
+
+  /* ═══════ ARACNÍDEOS ═══════ */
+  {
+    id:'caranguejeira-rosa', nome:'Caranguejeira Rosa do Chile', nomeCi:'Grammostola rosea',
+    cat:'aracnideos', emoji:'🕷️', grad:['#4C1D95','#5B21B6'],
+    nivel:'Iniciante', status:'Disponível',
+    preco:"A partir de R$ 549",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Grammostola_rosea.jpg?width=600", destaque:true,
+    tamanho:'12–15 cm (envergadura)', alim:'Carnívoro — grilos e outros insetos',
+    origem:'Chile e Argentina (regiões áridas)',
+    desc:'Uma das caranguejeiras mais recomendadas para iniciantes. Temperamento dócil, movimentos lentos e baixíssima necessidade de cuidados. Pode ficar meses sem comer normalmente.',
+    temp:'22–28 °C', umid:'40–60%', vida:'15–20 anos (fêmeas)'
+  },
+  {
+    id:'escorpiao-imperador', nome:'Escorpião Imperador', nomeCi:'Pandinus imperator',
+    cat:'aracnideos', emoji:'🦂', grad:['#1C1917','#292524'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 699",
+    img:"https://cdn.pixabay.com/photo/2015/09/09/14/06/scorpion-931561_1280.jpg", destaque:false,
+    tamanho:'15–20 cm', alim:'Carnívoro — grilos, baratas e pequenos roedores',
+    origem:'África Ocidental (florestas tropicais úmidas)',
+    desc:'O maior escorpião do mundo. Veneno de baixa toxicidade para humanos. Usa as garras (pedipalpos) como principal arma. Impressionante e relativamente dócil para a espécie.',
+    temp:'25–30 °C', umid:'70–80%', vida:'6–8 anos'
+  },
+
+  /* ═══════ AQUÁTICOS ═══════ */
+  {
+    id:'axolote', nome:'Axolote', nomeCi:'Ambystoma mexicanum',
+    cat:'aquaticos', emoji:'🦎', grad:['#0E7490','#0891B2'],
+    nivel:'Intermediário', status:'Disponível',
+    preco:"A partir de R$ 399",
+    img:"https://commons.wikimedia.org/wiki/Special:FilePath/Axolotl_ganz.jpg?width=600", destaque:true,
+    tamanho:'20–30 cm', alim:'Carnívoro — minhocas, camarões e pellets',
+    origem:'Lagos do México (Xochimilco)',
+    desc:'A salamandra que nunca cresce. Fenômeno biológico da neotenia — mantém características larvais para sempre. Capacidade extraordinária de regeneração: membros, coração e até partes do cérebro.',
+    temp:'14–20 °C', umid:'Aquático', vida:'10–15 anos'
+  }
+];
+
+/* ──────────────────────────────────────────
+   CATEGORIAS
+────────────────────────────────────────── */
+const CATEGORIES = [
+  { id:'todos',      label:'Todos',       ico:'🌿' },
+  { id:'aves',       label:'Aves',        ico:'🦜' },
+  { id:'repteis',    label:'Répteis',     ico:'🦎' },
+  { id:'serpentes',  label:'Serpentes',   ico:'🐍' },
+  { id:'mamiferos',  label:'Mamíferos',   ico:'🐾' },
+  { id:'aracnideos', label:'Aracnídeos',  ico:'🕷️' },
+  { id:'aquaticos',  label:'Aquáticos',   ico:'🌊' },
+];
+
+/* ──────────────────────────────────────────
+   STATE
+────────────────────────────────────────── */
+const State = { cat:'todos', nivel:'todos', search:'', sort:'nome-az' };
+
+/* ──────────────────────────────────────────
+   HELPERS
+────────────────────────────────────────── */
+function levelClass(n){
+  return n==='Iniciante'?'ini':n==='Intermediário'?'int':'ava';
+}
+
+function catLabel(cat){
+  const c = CATEGORIES.find(x=>x.id===cat);
+  return c ? `${c.ico} ${c.label}` : cat;
+}
+
+/* ──────────────────────────────────────────
+   RENDER FILTER PILLS
+────────────────────────────────────────── */
+function renderPills(){
+  const bar = document.getElementById('filter-pills');
+  const counts = {};
+  ANIMALS.forEach(a=>{
+    counts[a.cat]=(counts[a.cat]||0)+1;
+    counts.todos=(counts.todos||0)+1;
+  });
+  bar.innerHTML = CATEGORIES.map(c=>`
+    <button class="fpill${State.cat===c.id?' active':''}" data-cat="${c.id}"
+      onclick="setCat(null,'${c.id}')" aria-pressed="${State.cat===c.id}">
+      ${c.ico} ${c.label}
+      <span style="opacity:.55;font-weight:400">${counts[c.id]||0}</span>
+    </button>`).join('');
+}
+
+/* ──────────────────────────────────────────
+   RENDER GRID
+────────────────────────────────────────── */
+function renderGrid(list){
+  var grid = document.getElementById('animals-grid');
+  var total = ANIMALS.length;
+  var cnt = list.length === total ? list.length+' animais' : list.length+' de '+total;
+  document.getElementById('result-count').textContent = cnt;
+
+  if(!list.length){
+    grid.innerHTML='<div class="empty"><div class="empty-ico">&#128269;</div>'
+      +'<p class="empty-t">Nenhum animal encontrado</p>'
+      +'<p class="empty-s">Tente ajustar os filtros ou a busca.</p></div>';
+    return;
+  }
+
+  var cards = list.map(function(a){
+    var lc  = levelClass(a.nivel);
+    var bg  = 'linear-gradient(135deg,'+a.grad[0]+','+a.grad[1]+')';
+    var feat = a.destaque ? '<div class="acard-featured">&#11088; Destaque</div>' : '';
+    var origem2 = a.origem.split('(')[0].trim().split(' ').slice(0,2).join(' ');
+    var cat = catLabel(a.cat);
+
+    var priceBlock = '';
+    if(a.preco){
+      var parts = a.preco.split(' ');
+      var ri = 0;
+      for(var i=0;i<parts.length;i++){ if(parts[i].indexOf('R$')===0){ri=i;break;} }
+      var prefix = parts.slice(0,ri).join(' ');
+      var value  = parts.slice(ri).join(' ');
+      priceBlock = '<div class="card-price">'
+        +'<span class="card-price-from">'+prefix+'&nbsp;</span>'
+        +'<span class="card-price-value">'+value+'</span>'
+        +'</div>';
+    }
+
+    return '<article class="acard" data-id="'+a.id+'" tabindex="0" role="button" aria-label="Ver detalhes de '+a.nome+'">'
+      +feat
+      +'<div class="card-thumb">'
+        +(a.img
+          ? '<img class="card-real-img" src="'+a.img+'" alt="'+a.nome+'" loading="lazy"'
+            +' onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\';">'
+            +'<div class="card-img-fallback" style="background:'+bg+'">'+a.emoji+'</div>'
+          : '<div class="card-emoji-bg" style="background:'+bg+'">'+a.emoji+'</div>'
+        )
+        +'<div class="card-cat-tag">'+cat+'</div>'
+      +'</div>'
+      +'<div class="card-body">'
+        +'<h3 class="card-name">'+a.nome+'</h3>'
+        +'<p class="card-sci">'+a.nomeCi+'</p>'
+        +'<p class="card-desc">'+a.desc+'</p>'
+        +'<div class="card-tags">'
+          +'<span class="ctag">&#128207; '+a.tamanho+'</span>'
+          +'<span class="ctag">&#127757; '+origem2+'</span>'
+          +'<span class="lbadge '+lc+'">'+a.nivel+'</span>'
+        +'</div>'
+      +'</div>'
+      +priceBlock
+      +'<div class="card-foot">'
+        +'<span class="card-status">'+a.status+'</span>'
+        +'<span class="card-view">Ver detalhes &#x2192;</span>'
+      +'</div>'
+      +'</article>';
+  });
+
+  grid.innerHTML = cards.join('');
+
+  // Event delegation — no inline JS
+  grid.querySelectorAll('.acard').forEach(function(el){
+    el.addEventListener('click', function(){ openModal(el.getAttribute('data-id')); });
+    el.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openModal(el.getAttribute('data-id')); }
+    });
+  });
+
+  // Entrance animation
+  requestAnimationFrame(function(){
+    var els = grid.querySelectorAll('.acard');
+    els.forEach(function(el,i){
+      el.style.opacity='0'; el.style.transform='translateY(20px)';
+      setTimeout(function(){
+        el.style.transition='opacity .5s ease,transform .5s ease';
+        el.style.opacity='1'; el.style.transform='translateY(0)';
+      }, i*28);
+    });
+  });
+}
+function applyFilters(){
+  let list = [...ANIMALS];
+  if(State.cat!=='todos') list=list.filter(a=>a.cat===State.cat);
+  if(State.nivel!=='todos') list=list.filter(a=>a.nivel===State.nivel);
+  if(State.search){
+    const q=State.search.toLowerCase();
+    list=list.filter(a=>
+      a.nome.toLowerCase().includes(q)||
+      a.nomeCi.toLowerCase().includes(q)||
+      a.desc.toLowerCase().includes(q)||
+      a.origem.toLowerCase().includes(q)||
+      a.alim.toLowerCase().includes(q)
+    );
+  }
+  const sort=document.getElementById('sort-sel').value;
+  if(sort==='nome-az') list.sort((a,b)=>a.nome.localeCompare(b.nome,'pt-BR'));
+  if(sort==='nome-za') list.sort((a,b)=>b.nome.localeCompare(a.nome,'pt-BR'));
+  if(sort==='nivel-asc'){const m={Iniciante:0,Intermediário:1,Avançado:2};list.sort((a,b)=>m[a.nivel]-m[b.nivel]);}
+  if(sort==='nivel-desc'){const m={Iniciante:2,Intermediário:1,Avançado:0};list.sort((a,b)=>m[a.nivel]-m[b.nivel]);}
+  if(sort==='destaque') list.sort((a,b)=>(b.destaque?1:0)-(a.destaque?1:0));
+  renderGrid(list);
+}
+
+function setCat(e,cat){
+  if(e) e.preventDefault();
+  State.cat=cat;
+  renderPills();
+  applyFilters();
+  if(e) smoothTo(null,'catalogo');
+}
+
+function setLevel(btn){
+  State.nivel=btn.dataset.lv;
+  document.querySelectorAll('.lvpill').forEach(b=>{
+    b.classList.remove('active','easy','mid','hard');
+  });
+  btn.classList.add('active');
+  const m={Iniciante:'easy',Intermediário:'mid',Avançado:'hard'};
+  if(m[State.nivel]) btn.classList.add(m[State.nivel]);
+  applyFilters();
+}
+
+function clearSearch(){
+  document.getElementById('search-input').value='';
+  State.search='';
+  applyFilters();
+}
+
+function resetFilters(){
+  State.cat='todos';State.nivel='todos';State.search='';
+  document.getElementById('search-input').value='';
+  document.getElementById('sort-sel').value='nome-az';
+  document.querySelectorAll('.lvpill').forEach(b=>b.classList.remove('active','easy','mid','hard'));
+  document.querySelector('.lvpill[data-lv="todos"]').classList.add('active');
+  renderPills();applyFilters();
+  showToast('Filtros limpos ✓','info');
+}
+
+/* ──────────────────────────────────────────
+   MODAL
+────────────────────────────────────────── */
+function openModal(id){
+  var a = null;
+  for(var i=0;i<ANIMALS.length;i++){ if(ANIMALS[i].id===id){ a=ANIMALS[i]; break; } }
+  if(!a) return;
+  var lc = levelClass(a.nivel);
+  var bg = 'linear-gradient(135deg,'+a.grad[0]+','+a.grad[1]+')';
+
+  var modalPrice = '';
+  if(a.preco){
+    var parts = a.preco.split(' ');
+    var ri = 0;
+    for(var j=0;j<parts.length;j++){ if(parts[j].indexOf('R$')===0){ri=j;break;} }
+    var prefix = parts.slice(0,ri).join(' ');
+    var value  = parts.slice(ri).join(' ');
+    modalPrice = '<div class="modal-price">'
+      +'<span class="modal-price-from">'+prefix+'&nbsp;</span>'
+      +'<span class="modal-price-value">'+value+'</span>'
+      +'<span class="modal-price-note">&nbsp;&middot; at&eacute; 12x sem juros</span>'
+      +'</div>';
+  }
+
+  var inner = document.getElementById('modal-inner');
+  inner.innerHTML =
+    '<div class="modal-img-wrap">'
+      +(a.img
+    ? '<img src="'+a.img+'" alt="'+a.nome+'" style="width:100%;height:100%;object-fit:cover;"'
+      +' onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\';">'
+      +'<div class="modal-emoji-bg" style="display:none;background:'+bg+'">'+a.emoji+'</div>'
+    : '<div class="modal-emoji-bg" style="background:'+bg+'">'+a.emoji+'</div>'
+  )
+    +'</div>'
+    +'<div class="modal-info">'
+      +'<p class="modal-cat-l">'+catLabel(a.cat)+'</p>'
+      +'<h2 class="modal-title">'+a.nome+'</h2>'
+      +'<p class="modal-sci">'+a.nomeCi+'</p>'
+      +modalPrice
+      +'<span class="lbadge '+lc+'" style="width:fit-content">'+a.nivel+'</span>'
+      +'<p class="modal-desc">'+a.desc+'</p>'
+      +'<div class="modal-specs">'
+        +'<div class="mspec"><p class="mspec-l">Tamanho</p><p class="mspec-v">'+a.tamanho+'</p></div>'
+        +'<div class="mspec"><p class="mspec-l">Alimenta&ccedil;&atilde;o</p><p class="mspec-v">'+a.alim+'</p></div>'
+        +'<div class="mspec"><p class="mspec-l">Temperatura</p><p class="mspec-v">'+a.temp+'</p></div>'
+        +'<div class="mspec"><p class="mspec-l">Umidade</p><p class="mspec-v">'+a.umid+'</p></div>'
+        +'<div class="mspec"><p class="mspec-l">Origem</p><p class="mspec-v">'+a.origem+'</p></div>'
+        +'<div class="mspec"><p class="mspec-l">Longevidade</p><p class="mspec-v">'+a.vida+'</p></div>'
+      +'</div>'
+      +'<div class="modal-acts" id="modal-acts-btn"></div>'
+    +'</div>';
+
+  // Buttons via DOM to avoid string escaping
+  var acts = document.getElementById('modal-acts-btn');
+  var btnInt = document.createElement('button');
+  btnInt.className='btn btn-p btn-sm';
+  btnInt.textContent='Tenho interesse';
+  btnInt.addEventListener('click', function(){ handleInterest(a.nome); });
+  var btnFec = document.createElement('button');
+  btnFec.className='btn btn-s btn-sm';
+  btnFec.textContent='Fechar';
+  btnFec.addEventListener('click', closeModal);
+  acts.appendChild(btnInt);
+  acts.appendChild(btnFec);
+
+  document.body.style.overflow='hidden';
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      document.getElementById('modal-ov').classList.add('open');
+    });
+  });
+}
+function closeModal(){
+  document.getElementById('modal-ov').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function modalClose(e){if(e.target===document.getElementById('modal-ov'))closeModal();}
+
+function handleInterest(nome){
+  closeModal();
+  var msg = encodeURIComponent('Olá! Tenho interesse no animal: ' + nome + '. Poderia me passar mais informações?');
+  window.open('https://wa.me/556182362423?text=' + msg, '_blank', 'noopener');
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ──────────────────────────────────────────
+   NAVBAR
+────────────────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>24);
+},{passive:true});
+
+function toggleBurger(){
+  document.getElementById('burger').classList.toggle('open');
+  document.getElementById('nav-mob').classList.toggle('open');
+}
+function closeBurger(){
+  document.getElementById('burger').classList.remove('open');
+  document.getElementById('nav-mob').classList.remove('open');
+}
+
+/* ──────────────────────────────────────────
+   SMOOTH SCROLL
+────────────────────────────────────────── */
+function smoothTo(e,id){
+  if(e) e.preventDefault();
+  const el=document.getElementById(id);
+  if(!el) return;
+  const offset=72;
+  window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-offset,behavior:'smooth'});
+}
+function scrollToTop(e){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}
+
+/* ──────────────────────────────────────────
+   TOAST
+────────────────────────────────────────── */
+let toastTimer;
+function showToast(msg,type='info',dur=3200){
+  const icons={info:'ℹ️',success:'✅',warning:'⚠️',error:'❌'};
+  document.getElementById('toast-ico').textContent=icons[type]||'ℹ️';
+  document.getElementById('toast-msg').innerHTML=msg;
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(hideToast,dur);
+}
+function hideToast(){document.getElementById('toast').classList.remove('show');}
+
+/* ──────────────────────────────────────────
+   COUNT-UP STATS
+────────────────────────────────────────── */
+function initCountUp(){
+  const nums=document.querySelectorAll('[data-count]');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target,target=+el.dataset.count,suf=el.dataset.suf||'';
+      const dur=1600,start=performance.now();
+      const tick=now=>{
+        const prog=Math.min((now-start)/dur,1);
+        const eased=1-Math.pow(1-prog,4);
+        el.textContent=Math.round(eased*target)+suf;
+        if(prog<1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      obs.unobserve(el);
+    });
+  },{threshold:.5});
+  nums.forEach(n=>obs.observe(n));
+}
+
+/* ──────────────────────────────────────────
+   SCROLL REVEAL
+────────────────────────────────────────── */
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+/* ──────────────────────────────────────────
+   DEBOUNCED SEARCH
+────────────────────────────────────────── */
+let searchTimer;
+document.getElementById('search-input').addEventListener('input',e=>{
+  clearTimeout(searchTimer);
+  searchTimer=setTimeout(()=>{State.search=e.target.value;applyFilters();},260);
+});
+
+/* ──────────────────────────────────────────
+   INIT
+────────────────────────────────────────── */
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  renderPills();
+  applyFilters();
+  initCountUp();
+  initReveal();
+});
+</script>
+</body>
+</html>
